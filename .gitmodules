@@ -7,3 +7,9 @@
 [submodule "/home/evan/.vim/bundle/powerline.git"]
 	path = /home/evan/.vim/bundle/powerline.git
 	url = https://github.com/powerline/powerline.git
+[submodule "/home/evan/.vim/bundle/vim-powerline.git"]
+	path = /home/evan/.vim/bundle/vim-powerline.git
+	url = https://github.com/Lokaltog/vim-powerline.git
+[submodule "/home/evan/.vim/bundle/vundle.git"]
+	path = /home/evan/.vim/bundle/vundle.git
+	url = https://github.com/gmarik/Vundle.vim.git
