@@ -1,6 +1,16 @@
-execute pathogen#infect()
-syntax on
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'powerline/powerline'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'scrooloose/nerdtree'
+
+call vundle#end()
 filetype plugin indent on
+
 
 vno <C-c> "+y
 map <C-v> "+p
@@ -18,3 +28,5 @@ ino <Up> <Nop>
 vno <Down> <Nop>
 vno <Left> <Nop>
 vno <Right> <Nop>
+
+map <C-t> <C-[>:NERDTreeToggle<cr>
