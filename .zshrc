@@ -10,7 +10,7 @@ source ~/.config/zsh/setopt.zsh
 source ~/.config/zsh/theming.zsh
 source ~/.config/zsh/windows.zsh
 
-eval "$(oh-my-posh --init --shell.config/zsh --config ~/omp.json)"
+eval "$(oh-my-posh prompt init zsh -c='/home/evan/.config/oh-my-posh.json')"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
