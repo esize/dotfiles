@@ -1,0 +1,17 @@
+# Cool Packages
+
+- [Hyprland - Tiling compositor with the looks](https://hyprland.org)
+- [Nala - Alternative apt frontend](https://gitlab.com/volian/nala)
+- [Starship - The minimal, blazing-fast, and infinitely customizable prompt for any shell!](https://starship.rs)
+- [WezTerm - A powerful cross-platform terminal emulator and multiplexer written by @wez and implemented in Rust](https://wezfurlong.org/wezterm/)
+- [Tofi - Extremely fast and simple app launcher](https://github.com/philj56/tofi)
+- [Waybar - Highly customizable Wayland status bar](https://github.com/Alexays/Waybar)
+- [Dunst - Lightweight and customizable notification daemon](https://github.com/dunst-project/dunst)
+- [swhkd - Simple Wayland HotKey Daemon](https://github.com/waycrate/swhkd)
+- [xplr - A hackable, minimal, fast TUI file explorer](https://xplr.dev/)
+- [Betterfox - about:config tweaks to enhance Mozilla Firefox](https://github.com/yokoffing/Betterfox)
+- [Looking Glass - Low latency KVM implementation](https://looking-glass.io/)
+- [Zoxide - Better cd command](https://github.com/ajeetdsouza/zoxide)
+- [bat - Better 'cat' command](https://github.com/sharkdp/bat)
+- [eza - Modern ls command (with pretty colors)](https://eza.rocks/)
+- [neovim - Best version of vim fr](https://github.com/neovim/neovim)
