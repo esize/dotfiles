@@ -12,3 +12,7 @@ PURPLE='\e[1;35m'
 cyan='\e[0;36m'
 CYAN='\e[1;36m'
 NC='\e[0m'
+
+# Starship setup
+eval "$(starship init zsh)"
+

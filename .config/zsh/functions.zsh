@@ -121,3 +121,12 @@ precmd_disown() {
 
 autoload -U add-zsh-hook
 add-zsh-hook precmd precmd_disown
+
+
+not_git_repo() {
+  if git -C "$directory" rev-parse --is-inside-work-tree >/dev/null 2>/dev/null; then
+    exit 0
+  else
+    exit 1
+  fi
+}
