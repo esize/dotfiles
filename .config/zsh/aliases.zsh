@@ -28,6 +28,7 @@ alias watch='watch -d'
 alias wget='wget -c'
 alias vim='nvim'
 alias lf='lf-ueberzug'
+alias cat='bat'
 
 # Safetynets
 # do not delete / or prompt if deleting more than 3 files at a time #
@@ -45,3 +46,5 @@ alias install='sudo apt install'
 
 # dotfile management
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'

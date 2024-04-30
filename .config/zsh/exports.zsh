@@ -8,3 +8,5 @@ export GREP_COLOR='3;33'
 #if [ "${TERM}" = 'rxvt-256color' ] && ! [ -f '/usr/share/terminfo/r/rxvt-256color' ] && ! [ -f '/lib/terminfo/r/rxvt-256color' ] && ! [ -f "${HOME}/.terminfo/r/rxvt-256color" ]; #then
 #    export TERM='rxvt-unicode'
 #fi
+
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"

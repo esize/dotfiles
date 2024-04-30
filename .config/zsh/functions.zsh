@@ -130,3 +130,10 @@ not_git_repo() {
     exit 1
   fi
 }
+
+
+alias bathelp='bat --plain --language=cmd-help'
+help() (
+    set -o pipefail
+    "$@" --help 2>&1 | bathelp
+)
