@@ -27,6 +27,7 @@ alias ssha='eval $(ssh-agent) && ssh-add'
 alias watch='watch -d'
 alias wget='wget -c'
 alias vim='nvim'
+alias lf='lf-ueberzug'
 
 # Safetynets
 # do not delete / or prompt if deleting more than 3 files at a time #
