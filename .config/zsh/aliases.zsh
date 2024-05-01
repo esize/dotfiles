@@ -11,7 +11,7 @@ alias chown="chown -c"
 alias df='df -h -x squashfs -x tmpfs -x devtmpfs'
 alias egrep='egrep --colour=auto'
 alias extip='curl icanhazip.com'
-alias grep='grep --color=auto'
+alias grep='grep'
 alias l.='ls -lhFa --time-style=long-iso --color=auto'
 alias ll='ls'
 alias ln='ln -iv'

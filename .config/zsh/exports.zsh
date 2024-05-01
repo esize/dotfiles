@@ -2,6 +2,7 @@
 # emulator to send escape sequences that are not understood by tmux due to setting escape-time to 0.
 # NOTE: This assumes that the terminal emulator in use supports these capabilities.
 export TERM=tmux-256color
+export TERMINAL=/usr/bin/wezterm
 export GREP_COLOR='3;33'
 
 # Not all servers have terminfo for rxvt-256color. :<
