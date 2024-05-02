@@ -21,7 +21,7 @@ $fill\
 ([[$julia](fg:white)](fg:surface1 bg:none))\
 ([[$ruby](fg:white)](fg:surface1 bg:none))\
 ([[$python](fg:white)](fg:surface1 bg:none))
- $character
+ $character\
 """
 
 [hostname]
