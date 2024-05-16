@@ -68,3 +68,6 @@ vim.keymap.set("n", "<leader>to", ":tabnew<CR>")   -- open new tab
 vim.keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close current tab
 vim.keymap.set("n", "<leader>tn", ":tabn<CR>")     -- go to next tab
 vim.keymap.set("n", "<leader>tp", ":tabp<CR>")     -- go to prev tab
+
+-- save as sudo
+vim.api_nvim_set_keymap('c', 'w!!', "<esc>:lua require'utils'.sudo_write()<CR>", { silent = true })
