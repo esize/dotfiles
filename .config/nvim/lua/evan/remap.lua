@@ -70,4 +70,4 @@ vim.keymap.set("n", "<leader>tn", ":tabn<CR>")     -- go to next tab
 vim.keymap.set("n", "<leader>tp", ":tabp<CR>")     -- go to prev tab
 
 -- save as sudo
-vim.api_nvim_set_keymap('c', 'w!!', "<esc>:lua require'utils'.sudo_write()<CR>", { silent = true })
+vim.keymap.set('c', 'w!!', "<esc>:lua require'utils'.sudo_write()<CR>", { silent = true })
