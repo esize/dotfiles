@@ -9,19 +9,27 @@ closer = "p:os"
 pink = "#F5BDE6"
 lavender = "#B7BDF8"
 blue = "#8AADF4"
-peach = "#fe640b"
-yellow = "#df8e1d"
-text = "#4c4f69"
-crust = "#dce0e8"
-base = "#eff1f5"
-green = "#40a02b"
-teal = "#179299"
-maroon = "#e64553"
-
+peach = "#f5a97f"
+yellow = "#eed49f"
+text = "#cad3f5"
+crust = "#181926"
+mantle = "#1e2030"
+base = "#24273a"
+green = "#a6da95"
+teal = "#8bd5ca"
+maroon = "#ee99a0"
+red = "#ed8796"
+flamingo = "#dd7878"
+mauve = "#c6a0f6"
+sapphire = "#7dc4e4"
+surface0 = "#363a4f"
+surface2 = "#5b6078"
+sky = "#91d7e3"
 
 [[blocks]]
 type = 'prompt'
 alignment = 'left'
+newline = true
 
 [[blocks.segments]]
 type = 'session'
@@ -48,26 +56,21 @@ type = 'os'
 style = 'diamond'
 leading_diamond = ''
 template = ' {{ if .WSL }}WSL {{ end }}{{.Icon}} '
-background = 'p:text'
-foreground = 'p:base'
-Duration = 0
-NameLength = 0
+background_templates = [
+  '{{if contains "ubuntu" .OS}}p:peach{{end}}',
+  '{{if contains "windows" .OS}}p:blue{{end}}',
+  '{{if contains "nixos" .OS}}p:lavender{{end}}',
+]
+foreground = 'p:crust'
 properties = { windows = '' }
 
 [[blocks.segments]]
 type = 'path'
 style = 'powerline'
 powerline_symbol = ''
-template = '  {{ .Path }}'
-background_templates = [
-  '{{if contains "ubuntu" .OS}}p:yellow{{end}}',
-  '{{if contains "windows" .OS}}p:blue{{end}}',
-  '{{if contains "nixos" .OS}}p:lavender{{end}}',
-]
+template = '  {{ .Path }} '
+background = 'p:mantle'
 foreground = 'p:text'
-Text = ''
-Duration = 0
-NameLength = 0
 properties = { style = 'full', home_icon = '~' }
 
 
@@ -76,17 +79,14 @@ type = 'git'
 style = 'powerline'
 powerline_symbol = ''
 background_templates = [
-  '{{ if or (.Working.Changed) (.Staging.Changed) }}#ffeb95{{ end }}',
-  '{{ if and (gt .Ahead 0) (gt .Behind 0) }}#c5e478{{ end }}',
-  '{{ if gt .Ahead 0 }}#C792EA{{ end }}',
-  '{{ if gt .Behind 0 }}#C792EA{{ end }}',
+  '{{ if or (.Working.Changed) (.Staging.Changed) }}p:yellow{{ end }}',
+  '{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:green{{ end }}',
+  '{{ if gt .Ahead 0 }}p:mauve{{ end }}',
+  '{{ if gt .Behind 0 }}p:mauve{{ end }}',
 ]
-template = ' {{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}<#ef5350>  {{ .Staging.String }}</>{{ end }} '
-background = '#FFFB38'
-foreground = '#011627'
-Text = ''
-Duration = 0
-NameLength = 0
+template = ' {{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}<p:red>  {{ .Staging.String }}</>{{ end }} '
+background = 'p:flamingo'
+foreground = 'p:base'
 
 [blocks.segments.properties]
 branch_icon = ' '
@@ -104,8 +104,8 @@ style = 'diamond'
 leading_diamond = ''
 trailing_diamond = ''
 template = ' {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }}'
-background = '#303030'
-foreground = '#3C873A'
+background = 'p:surface0'
+foreground = 'p:green'
 Text = ''
 Duration = 0
 NameLength = 0
@@ -119,11 +119,8 @@ style = 'diamond'
 leading_diamond = ' '
 trailing_diamond = ''
 template = ' {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}'
-background = '#306998'
-foreground = '#FFE873'
-Text = ''
-Duration = 0
-NameLength = 0
+background = 'p:surface0'
+foreground = 'p:yellow'
 
 [[blocks.segments]]
 type = 'java'
@@ -131,11 +128,8 @@ style = 'diamond'
 leading_diamond = ' '
 trailing_diamond = ''
 template = ' {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
-background = '#0e8ac8'
-foreground = '#ec2729'
-Text = ''
-Duration = 0
-NameLength = 0
+background = 'p:surface0'
+foreground = 'p:red'
 
 [[blocks.segments]]
 type = 'dotnet'
@@ -143,8 +137,8 @@ style = 'diamond'
 leading_diamond = ' '
 trailing_diamond = ''
 template = ' {{ if .Unsupported }}{{ else }}{{ .Full }}{{ end }}'
-background = '#0e0e0e'
-foreground = '#0d6da8'
+background = 'p:surface0'
+foreground = 'p:sapphire'
 Text = ''
 Duration = 0
 NameLength = 0
@@ -155,8 +149,8 @@ style = 'diamond'
 leading_diamond = ' '
 trailing_diamond = ''
 template = 'ﳑ {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
-background = '#ffffff'
-foreground = '#06aad5'
+background = 'p:surface0'
+foreground = 'p:sky'
 Text = ''
 Duration = 0
 NameLength = 0
@@ -167,8 +161,8 @@ style = 'diamond'
 leading_diamond = ' '
 trailing_diamond = ''
 template = ' {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
-background = '#f3f0ec'
-foreground = '#925837'
+background = 'p:surface0'
+foreground = 'p:peach'
 Text = ''
 Duration = 0
 NameLength = 0
@@ -179,8 +173,8 @@ style = 'diamond'
 leading_diamond = ' '
 trailing_diamond = ''
 template = 'ﴱ {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}'
-background = '#316ce4'
-foreground = '#ffffff'
+background = 'p:surface0'
+foreground = 'p:blue'
 Text = ''
 Duration = 0
 NameLength = 0
@@ -193,13 +187,31 @@ newline = true
 [[blocks.segments]]
 type = 'status'
 style = 'plain'
-foreground_templates = ['{{ if gt .Code 0 }}#ef5350{{ end }}']
+foreground_templates = [
+  "{{if gt .Code 0}}p:red{{end}}",
+  "{{if eq .Code 0}}p:text{{end}}",
+]
 template = ' '
-background = 'default'
-foreground = '#e0f8ff'
+background = 'transparent'
 Text = ''
 Duration = 0
 NameLength = 0
 
 [blocks.segments.properties]
 always_enabled = true
+
+
+[transient_prompt]
+newline = true
+foreground_templates = [
+  "{{if gt .Code 0}}p:red{{end}}",
+  "{{if eq .Code 0}}p:text{{end}}",
+]
+background = 'transparent'
+template = ' '
+filler = '\n '
+
+[secondary_prompt]
+foreground = "p:surface2"
+background = "transparent"
+template = ' '
