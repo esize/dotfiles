@@ -29,6 +29,7 @@ alias wget='wget -c'
 alias vim='nvim'
 alias lf='lf-ueberzug'
 alias cat='bat'
+alias \$=''
 
 # Safetynets
 # do not delete / or prompt if deleting more than 3 files at a time #
@@ -48,3 +49,4 @@ alias install='sudo apt install'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+alias docker-compose='docker compose'
