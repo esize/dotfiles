@@ -28,7 +28,7 @@ type = 'session'
 style = 'diamond'
 leading_diamond = ''
 trailing_diamond = ' '
-template = '{{ if .SSHSession }}{{ end }}'
+template = '{{ if .SSHSession }} {{.Hostname}}{{ end }}'
 background = 'p:teal'
 foreground = 'p:base'
 
