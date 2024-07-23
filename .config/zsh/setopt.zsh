@@ -1,3 +1,4 @@
+eval "$(zoxide init --cmd cd zsh)"
 # Don't beep on error
 setopt no_beep
 

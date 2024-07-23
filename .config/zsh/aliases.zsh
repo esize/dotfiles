@@ -1,9 +1,4 @@
 # Command aliases
-alias ..='cd ..'
-alias ...='cd ../../../'
-alias ....='cd ../../../../'
-alias back='cd $OLDPWD'
-alias c='clear'
 alias cd..='cd ..'
 alias cp='cp -iv'
 alias chmod="chmod -c"
