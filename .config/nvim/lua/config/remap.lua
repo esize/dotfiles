@@ -1,6 +1,3 @@
--- set the "leader" key to space
-vim.g.mapleader = " "
-
 -- use " pv" to go to explore current directory
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 

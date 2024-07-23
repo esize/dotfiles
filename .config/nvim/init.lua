@@ -1,2 +1,1 @@
-require('evan')
-
+require ("config")

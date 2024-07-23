@@ -12,10 +12,17 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
 -- enable smart indentation
+vim.opt.autoindent = true
 vim.opt.smartindent = true
+
+-- set terminal title to current file name
+vim.opt.title = true
 
 -- turn off line wrapping
 vim.opt.wrap = false
+
+-- command previews
+vim.opt.inccommand = "split"
 
 -- disable swap/backup, and enable undo features
 vim.opt.swapfile = false
@@ -61,3 +68,6 @@ vim.opt.cmdheight = 0
 
 -- backspace
 vim.opt.backspace = "indent,eol,start"
+
+-- ignore node_modules in searches
+vim.opt.wildignore:append({ "*/node_modules*" })

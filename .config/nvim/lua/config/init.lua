@@ -1,6 +1,6 @@
-require("evan.settings")
-require("evan.remap")
-require("evan.lazy_init")
+require("config.lazy")
+require("config.settings")
+require("config.remap")
 
 local augroup = vim.api.nvim_create_augroup
 local EvanGroup = augroup('Evan', {})
