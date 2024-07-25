@@ -1,4 +1,3 @@
-local builtin = require("telescope.builtin")
 return {
   "nvim-telescope/telescope.nvim",
   cmd = "Telescope",
@@ -8,12 +7,26 @@ return {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",
     },
-    {"nvim-tree/nvim-web-devicons"},
+    { "nvim-tree/nvim-web-devicons" },
   },
   keys = {
-    {"<leader>pf", builtin.find_files, desc = "Find files in project dir"},
-    {"<leader>ps", builtin.live_grep, desc = "Find str in project dir"},
-    {"<leader>pt", "<cmd>TodoTelescope<cr>", desc = "Search project TODOs" },
+    {
+      "<leader>pf",
+      function()
+        local builtin = require("telescope.builtin")
+        builtin.find_files()
+      end,
+      desc = "Find files in project dir",
+    },
+    {
+      "<leader>ps",
+      function()
+        local builtin = require("telescope.builtin")
+        builtin.live_grep()
+      end,
+      desc = "Find str in project dir",
+    },
+    { "<leader>pt", "<cmd>TodoTelescope<cr>", desc = "Search project TODOs" },
   },
   config = function()
     local telescope = require("telescope")
@@ -21,15 +34,15 @@ return {
 
     telescope.setup({
       defaults = {
-        path_display = {"smart"},
+        path_display = { "smart" },
         mappings = {
           i = {
             ["<C-k>"] = actions.move_selection_previous, -- move to prev result
             ["<C-j>"] = actions.move_selection_next, -- move to next result
             ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-          }
-        }
-      }
+          },
+        },
+      },
     })
     telescope.load_extension("fzf")
   end,
