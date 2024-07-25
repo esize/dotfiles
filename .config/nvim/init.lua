@@ -1,2 +1,2 @@
-require('evan')
-
+require("evan.core")
+require("evan.lazy")
