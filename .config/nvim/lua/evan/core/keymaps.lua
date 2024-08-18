@@ -24,9 +24,9 @@ vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 
 -- navigate location list
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
-
+-- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+-- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+--
 -- tabs
 keymap.set("n", "te", ":tabedit")
 keymap.set("n", "<leader>to", ":tabnew<CR>") -- open new tab
@@ -66,6 +66,12 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 -- <leader>y will yank into the system clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
+
+-- stop putting deleted text into the system clipboard
+vim.keymap.set({ "n", "v" }, "d", '"_d', { noremap = true })
+vim.keymap.set({ "n", "v" }, "D", '"_D', { noremap = true })
+vim.keymap.set({ "n", "v" }, "c", '"_c', { noremap = true })
+vim.keymap.set({ "n", "v" }, "C", '"_C', { noremap = true })
 
 -- q is good for absolutely nothing
 vim.keymap.set("n", "Q", "<nop>")
