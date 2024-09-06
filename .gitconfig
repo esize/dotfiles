@@ -25,3 +25,5 @@
   undo = reset --soft HEAD^
 [gpg]
 	format = ssh
+[commit]
+	gpgsign = true
