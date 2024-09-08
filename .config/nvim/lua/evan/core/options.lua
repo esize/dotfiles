@@ -34,3 +34,5 @@ opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 opt.splitright = true -- split vertical windows to the right
 opt.splitbelow = true -- split horizontal window to the bottom
 
+-- set conceal level so that obsidian works right
+vim.opt_local.conceallevel = 2
