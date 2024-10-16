@@ -2,6 +2,7 @@
 
 version = 2
 osc99 = true
+auto_upgrade = true
 
 [palette]
 os = "#ACB0BE"
