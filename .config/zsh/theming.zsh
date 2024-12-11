@@ -16,4 +16,7 @@ NC='\e[0m'
 # # Starship setup
 # eval "$(starship init zsh)"
 #
+
+if command -v oh-my-posh &> /dev/null; then
 eval "$(oh-my-posh init zsh --config ~/.config/omp/omp.toml)"
+fi

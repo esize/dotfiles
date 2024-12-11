@@ -131,9 +131,10 @@ not_git_repo() {
   fi
 }
 
-
-alias bathelp='bat --plain --language=cmd-help'
-help() (
-    set -o pipefail
-    "$@" --help 2>&1 | bathelp
-)
+if command -v bat &> /dev/null; then
+  alias bathelp='bat --plain --language=cmd-help'
+  help() (
+      set -o pipefail
+      "$@" --help 2>&1 | bathelp
+  )
+fi

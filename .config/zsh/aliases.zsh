@@ -6,11 +6,12 @@ alias chown="chown -c"
 alias df='df -h -x squashfs -x tmpfs -x devtmpfs'
 alias egrep='egrep --colour=auto'
 alias extip='curl icanhazip.com'
-alias grep='grep'
 alias l.='ls -lhFa --time-style=long-iso --color=auto'
 alias ll='ls'
 alias ln='ln -iv'
-alias ls='eza --icons -a --group-directories-first'
+if command -v eza &> /dev/null; then
+  alias ls='eza --icons -a --group-directories-first'
+fi
 alias lsmount='mount |column -t'
 alias mkdir='mkdir -pv'
 alias mv='mv -iv'
@@ -21,11 +22,24 @@ alias rmdir='rmdir -v'
 alias ssha='eval $(ssh-agent) && ssh-add'
 alias watch='watch -d'
 alias wget='wget -c'
-alias vim='nvim'
-# alias python='python3'
-# alias pip='pip3'
-alias lf='lf-ueberzug'
-alias cat='bat'
+
+if command -v nvim &> /dev/null; then
+  alias vim='nvim'
+fi
+
+if command -v python3 &> /dev/null; then
+  alias python='python3'
+  alias pip='pip3'
+fi
+
+if command -v lf-ueberzug &> /dev/null; then
+  alias lf='lf-ueberzug'
+fi
+
+if command -v bat &> /dev/null; then
+  alias cat='bat'
+fi
+
 alias \$=''
 
 # Safetynets
@@ -45,5 +59,11 @@ alias install='sudo apt install'
 # dotfile management
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
-alias docker-compose='docker compose'
+
+if command -v bat &> /dev/null; then
+  alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+fi
+
+if command -v docker &> /dev/null; then
+  alias docker-compose='docker compose'
+fi

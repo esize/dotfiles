@@ -11,3 +11,6 @@ export GREP_COLOR='3;33'
 #fi
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+export display=:0
+
