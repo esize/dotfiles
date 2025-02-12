@@ -29,3 +29,25 @@ xargs -I{} mv {} .config-backup/{}
 ```shell
 config config --local status.showUntrackedFiles no
 ```
+
+## Git Config
+```shell
+git config --global user.email "evan@wool.homes"
+git config --global user.name "esize"
+gh auth login && gh auth setup-git
+```
+
+## Windows Stuff
+### oh-my-posh
+```powershell
+nvim $PROFILE
+```
+Edit the PowerShell configuration file and add the following line:
+```powershell
+(@(& 'C:/Users/evan/AppData/Local/Programs/oh-my-posh/bin/oh-my-posh.exe' init pwsh --config='C:\Users\evan\dotfiles\.config\omp\omp.toml' --print) -join "`n") | Invoke-Expression
+```
+
+Create a symlink between the neovim config in the dotfiles repo and the Windows neovim directory.
+```powershell
+New-Item -Path ~\AppData\Local\nvim -ItemType SymbolicLink -Value C:\Users\evan\dotfiles\.config\nvim\
+```
