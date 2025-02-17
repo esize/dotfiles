@@ -6,7 +6,7 @@
 	helper = !/usr/bin/gh auth git-credential
 [user]
 	email = evan@wool.homes
-	name = Evan Sizemore
+	name = esize
 	signingkey = /home/evan/.ssh/id_ed25519.pub
 [init]
 	defaultBranch = main

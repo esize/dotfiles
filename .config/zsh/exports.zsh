@@ -14,3 +14,5 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 export display=:0
 
+export SUDO_EDITOR="nvim"
+alias "sudoedit"='function _sudoedit(){sudo -e "$1";};_sudoedit'
