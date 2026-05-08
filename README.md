@@ -39,12 +39,18 @@ gh auth login && gh auth setup-git
 
 ## Windows Stuff
 ### oh-my-posh
+Install oh-my-posh
+```powershell
+winget install JanDeDobbeleer.OhMyPosh --source winget
+winget install neovim.neovim
+```
+
 ```powershell
 nvim $PROFILE
 ```
 Edit the PowerShell configuration file and add the following line:
 ```powershell
-(@(& 'C:/Users/evan/AppData/Local/Programs/oh-my-posh/bin/oh-my-posh.exe' init pwsh --config='C:\Users\evan\dotfiles\.config\omp\omp.toml' --print) -join "`n") | Invoke-Expression
+oh-my-posh init pwsh --config='C:\Users\evan\dotfiles\.config\omp\omp.toml'| Invoke-Expression
 ```
 
 Create a symlink between the neovim config in the dotfiles repo and the Windows neovim directory.
