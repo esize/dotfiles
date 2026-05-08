@@ -17,7 +17,6 @@ alias mkdir='mkdir -pv'
 alias mv='mv -iv'
 alias ports='netstat -tulanp'
 alias j='jobs -l'
-alias rm='rm -iv'
 alias rmdir='rmdir -v'
 alias ssha='eval $(ssh-agent) && ssh-add'
 alias watch='watch -d'
@@ -47,7 +46,6 @@ alias \$=''
 
 # Safetynets
 # do not delete / or prompt if deleting more than 3 files at a time #
-alias rm='rm -I --preserve-root'
 
 # Parenting changing perms on / #
 alias chown='chown --preserve-root'
