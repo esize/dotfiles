@@ -1,0 +1,11 @@
+[tools]
+bat = "latest"
+eza = "latest"
+fd = "latest"
+fzf = "latest"
+github-cli = "latest"
+"github:BurntSushi/ripgrep" = "latest"
+just = "latest"
+neovim = "latest"
+oh-my-posh = "latest"
+sd = "latest"
