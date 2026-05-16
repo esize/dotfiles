@@ -1,3 +1,4 @@
+{{- if ne .chezmoi.os "windows" -}}
 #!/usr/bin/env bash
 # run_once: install packages for Mac and Linux
 
@@ -45,7 +46,6 @@ if ! command -v gh &>/dev/null; then
 fi
 
 {{ end }}
-
 # ── mise (all platforms) ──────────────────────────────────────────────────────
 
 if ! command -v mise &>/dev/null; then
@@ -59,3 +59,4 @@ export PATH="$HOME/.local/bin:$PATH"
 if command -v mise &>/dev/null; then
   mise install
 fi
+{{- end -}}

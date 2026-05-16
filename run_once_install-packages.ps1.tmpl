@@ -1,3 +1,4 @@
+{{- if eq .chezmoi.os "windows" -}}
 # run_once: install packages and configure Windows
 
 Set-StrictMode -Version Latest
@@ -100,3 +101,4 @@ if (Test-Path $devRegPath) {
 Stop-Process -Name explorer -Force -ErrorAction SilentlyContinue
 
 Write-Host "Windows setup complete. You may need to restart for some changes to take effect."
+{{- end -}}
