@@ -1,3 +1,6 @@
+[settings]
+node.gpg_verify = false
+
 [tools]
 # Runtimes
 node = "lts"
