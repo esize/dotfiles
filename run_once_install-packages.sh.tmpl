@@ -24,7 +24,7 @@ fi
 # Install from Brewfile
 BREWFILE="{{ .chezmoi.sourceDir }}/dot_Brewfile"
 if [ -f "$BREWFILE" ]; then
-  brew bundle --no-lock --file="$BREWFILE"
+  brew bundle --file="$BREWFILE"
 fi
 
 {{ else if eq .chezmoi.os "linux" }}
