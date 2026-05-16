@@ -1,59 +1,72 @@
-Dotfiles repo as described in [this article](https://www.atlassian.com/git/tutorials/dotfiles).
+# dotfiles
 
-## To Download on Fresh System:
-```shell
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+Cross-platform dotfiles managed with [chezmoi](https://chezmoi.io). Targets macOS, Ubuntu Linux, and Windows.
+
+## Fresh machine setup
+
+### macOS / Linux
+
+```sh
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
+~/.local/bin/chezmoi init --apply https://github.com/esize/dotfiles.git
 ```
 
-```shell
-echo ".dotfiles" >> .gitignore
-```
+This will:
+1. Apply all dotfiles via chezmoi
+2. Run `run_once_install-packages.sh` — installs Homebrew + Brewfile (macOS) or apt packages (Linux), then runs `mise install` to get all CLI tools
 
-```shell
-git clone --bare https://github.com/esize/dotfiles.git $HOME/.dotfiles
-```
+### Windows
 
-
-```shell
-config checkout
-```
-
-If ```config checkout``` returns an error, run the following:
-
-```shell
-mkdir -p .config-backup && \
-config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
-xargs -I{} mv {} .config-backup/{}
-```
-
-```shell
-config config --local status.showUntrackedFiles no
-```
-
-## Git Config
-```shell
-git config --global user.email "evan@wool.homes"
-git config --global user.name "esize"
-gh auth login && gh auth setup-git
-```
-
-## Windows Stuff
-### oh-my-posh
-Install oh-my-posh
-```powershell
-winget install JanDeDobbeleer.OhMyPosh --source winget
-winget install neovim.neovim
-```
+In an elevated PowerShell session:
 
 ```powershell
-nvim $PROFILE
-```
-Edit the PowerShell configuration file and add the following line:
-```powershell
-oh-my-posh init pwsh --config='C:\Users\evan\dotfiles\.config\omp\omp.toml'| Invoke-Expression
+winget install twpayne.chezmoi
+chezmoi init --apply https://github.com/esize/dotfiles.git
 ```
 
-Create a symlink between the neovim config in the dotfiles repo and the Windows neovim directory.
-```powershell
-New-Item -Path ~\AppData\Local\nvim -ItemType SymbolicLink -Value C:\Users\evan\dotfiles\.config\nvim\
+This will:
+1. Apply all dotfiles including the PowerShell profile and Windows Terminal config
+2. Run `run_once_install-packages.ps1` — installs apps via winget, Geist Mono Nerd Font, mise, WSL2, and applies system preferences (dark mode, file extensions, developer mode)
+
+## What's included
+
+| File/Dir | Purpose |
+|---|---|
+| `dot_config/mise/config.toml` | Cross-platform CLI tools: neovim, node, go, python, lazygit, fzf, ripgrep, etc. |
+| `dot_config/zsh/` | Modular zsh config: aliases, exports, path, plugins, history, completion, theming |
+| `dot_config/omp/omp.toml` | oh-my-posh theme (Catppuccin Macchiato) |
+| `dot_config/nvim/` | Neovim — kickstart.nvim base with personal plugins in `lua/evan/plugins/` |
+| `dot_config/tmux/tmux.conf` | tmux — prefix `C-Space`, Catppuccin Macchiato |
+| `dot_config/ghostty/config` | Ghostty terminal — Geist Mono, Catppuccin Macchiato |
+| `dot_config/git/config.tmpl` | Git config with SSH signing |
+| `dot_config/bat/` | bat — Catppuccin Macchiato theme |
+| `dot_Brewfile` | macOS: GUI apps (Ghostty, Aerospace, Raycast, Docker, etc.) |
+| `Documents/PowerShell/` | Windows PowerShell 7 profile |
+| `AppData/.../settings.json.tmpl` | Windows Terminal config |
+
+## Tool philosophy
+
+- **[mise](https://mise.jdx.dev)** manages all CLI tools and runtimes cross-platform — no nvm, no asdf
+- **Homebrew** (macOS only) handles GUI apps that mise can't install
+- **winget** (Windows only) handles GUI apps
+- **oh-my-posh** is the prompt on all platforms including PowerShell
+- **Catppuccin Macchiato** everywhere
+
+## Day-to-day chezmoi usage
+
+```sh
+chezmoi diff                  # preview pending changes
+chezmoi apply                 # apply dotfiles
+chezmoi edit ~/.zshrc         # edit a managed file in $EDITOR
+chezmoi re-add ~/.zshrc       # pull changes from home back into source
+chezmoi update                # git pull + apply
+```
+
+## Overriding per-machine config
+
+Machine-local overrides (e.g. a different SSH signing key) go in `~/.config/chezmoi/chezmoi.toml`:
+
+```toml
+[data]
+    signingkey = "~/.ssh/id_rsa.pub"
 ```
