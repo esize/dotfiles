@@ -1,0 +1,17 @@
+path+=($HOME/.local/bin)
+
+{{ if eq .chezmoi.os "darwin" }}
+# Homebrew (Apple Silicon)
+if [ -d /opt/homebrew/bin ]; then
+  path+=(/opt/homebrew/bin /opt/homebrew/sbin)
+fi
+# Homebrew (Intel)
+if [ -d /usr/local/bin ]; then
+  path+=(/usr/local/bin)
+fi
+{{ end }}
+
+{{ if eq .chezmoi.os "linux" }}
+path+=($HOME/go/bin)
+path+=($HOME/.cargo/bin)
+{{ end }}

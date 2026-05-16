@@ -1,0 +1,23 @@
+tap "nikitabobko/tap"
+
+# Bootstrap: mise manages all CLI tools; brew handles GUI + system tools
+brew "mise"
+brew "tmux"
+brew "stow"
+
+# GUI Applications
+cask "ghostty"
+cask "aerospace"
+cask "raycast"
+cask "docker"
+cask "visual-studio-code"
+cask "discord"
+cask "bitwarden"
+cask "google-chrome"
+cask "obsidian"
+cask "shottr"
+cask "caffeine"
+cask "tailscale"
+
+# Fonts
+cask "font-geist-mono-nerd-font"

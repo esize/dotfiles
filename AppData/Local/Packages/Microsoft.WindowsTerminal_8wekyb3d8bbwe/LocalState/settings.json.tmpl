@@ -1,0 +1,51 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+    "copyOnSelect": false,
+    "copyFormatting": "none",
+    "profiles": {
+        "defaults": {
+            "font": {
+                "face": "GeistMono Nerd Font Mono",
+                "size": 12
+            },
+            "colorScheme": "Catppuccin Macchiato",
+            "opacity": 95,
+            "useAcrylic": false,
+            "cursorShape": "filledBox"
+        },
+        "list": []
+    },
+    "schemes": [
+        {
+            "name": "Catppuccin Macchiato",
+            "background": "#24273A",
+            "black": "#494D64",
+            "blue": "#8AADF4",
+            "brightBlack": "#5B6078",
+            "brightBlue": "#8AADF4",
+            "brightCyan": "#91D7E3",
+            "brightGreen": "#A6DA95",
+            "brightPurple": "#F5BDE6",
+            "brightRed": "#ED8796",
+            "brightWhite": "#CAD3F5",
+            "brightYellow": "#EED49F",
+            "cursorColor": "#F4DBD6",
+            "cyan": "#91D7E3",
+            "foreground": "#CAD3F5",
+            "green": "#A6DA95",
+            "purple": "#F5BDE6",
+            "red": "#ED8796",
+            "selectionBackground": "#5B6078",
+            "white": "#B8C0E0",
+            "yellow": "#EED49F"
+        }
+    ],
+    "actions": [
+        { "command": { "action": "copy", "singleLine": false }, "keys": "ctrl+c" },
+        { "command": "paste", "keys": "ctrl+v" },
+        { "command": "find", "keys": "ctrl+shift+f" },
+        { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" }
+    ]
+}

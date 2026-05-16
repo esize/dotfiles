@@ -1,0 +1,85 @@
+# Navigation
+alias cd..='cd ..'
+alias mkdir='mkdir -pv'
+
+# File operations (safer defaults, cp/scp always recursive)
+alias cp='cp -ivr'
+alias mv='mv -iv'
+alias scp='scp -r'
+alias ln='ln -iv'
+alias rmdir='rmdir -v'
+
+# ls / eza
+if command -v eza &>/dev/null; then
+  alias ls='eza --icons -a --group-directories-first'
+  alias ll='eza --icons -la --group-directories-first'
+  alias la='eza --icons -la --group-directories-first'
+  alias lt='eza --icons --tree --group-directories-first'
+else
+  alias ll='ls -alF'
+  alias la='ls -A'
+fi
+
+# bat
+if command -v bat &>/dev/null; then
+  alias cat='bat'
+  alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+fi
+
+# neovim
+if command -v nvim &>/dev/null; then
+  alias vim='nvim'
+  alias vi='nvim'
+fi
+
+# python
+if command -v python3 &>/dev/null; then
+  alias python='python3'
+fi
+if command -v pip3 &>/dev/null; then
+  alias pip='pip3'
+fi
+
+# git / lazygit
+alias g='git'
+if command -v lazygit &>/dev/null; then
+  alias lg='lazygit'
+fi
+
+# docker
+if command -v docker &>/dev/null; then
+  alias docker-compose='docker compose'
+fi
+
+# misc
+alias j='jobs -l'
+alias watch='watch -d'
+alias wget='wget -c'
+alias extip='curl icanhazip.com'
+alias df='df -h -x squashfs -x tmpfs -x devtmpfs'
+alias ports='netstat -tulanp'
+alias ssha='eval $(ssh-agent) && ssh-add'
+alias \$=''
+
+# chezmoi
+alias cz='chezmoi'
+
+# Platform-specific
+{{ if eq .chezmoi.os "linux" }}
+# Linux package management (apt)
+alias update='sudo apt update'
+alias upgrade='sudo apt update && sudo apt dist-upgrade && sudo apt autoremove && sudo apt clean'
+alias install='sudo apt install'
+
+# Safer coreutils (GNU versions support --preserve-root)
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+{{ end }}
+
+{{ if eq .chezmoi.os "darwin" }}
+# macOS-specific
+alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
+alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder'
+alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder'
+{{ end }}

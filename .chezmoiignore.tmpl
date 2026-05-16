@@ -1,0 +1,20 @@
+# Mac-only files
+{{ if ne .chezmoi.os "darwin" }}
+dot_Brewfile
+{{ end }}
+
+# Unix-only files (Mac + Linux)
+{{ if eq .chezmoi.os "windows" }}
+dot_zshrc.tmpl
+dot_config/zsh
+dot_config/ghostty
+dot_config/tmux
+run_once_install-packages.sh.tmpl
+{{ end }}
+
+# Windows-only files
+{{ if ne .chezmoi.os "windows" }}
+Documents
+AppData
+run_once_install-packages.ps1.tmpl
+{{ end }}

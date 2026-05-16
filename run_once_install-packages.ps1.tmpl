@@ -1,0 +1,102 @@
+# run_once: install packages and configure Windows
+
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+
+function Install-WingetApp {
+    param([string]$Id, [string]$Name)
+    if (-not (winget list --id $Id -e --accept-source-agreements 2>&1 | Select-String $Id)) {
+        Write-Host "Installing $Name..."
+        winget install --id $Id -e --silent --accept-package-agreements --accept-source-agreements
+    }
+}
+
+# ── Applications ─────────────────────────────────────────────────────────────
+
+$apps = @(
+    @{ Id = "Microsoft.PowerShell";         Name = "PowerShell 7" },
+    @{ Id = "Microsoft.WindowsTerminal";    Name = "Windows Terminal" },
+    @{ Id = "Git.Git";                      Name = "Git" },
+    @{ Id = "GitHub.cli";                   Name = "GitHub CLI" },
+    @{ Id = "Neovim.Neovim";               Name = "Neovim" },
+    @{ Id = "Microsoft.VisualStudioCode";   Name = "VSCode" },
+    @{ Id = "Discord.Discord";              Name = "Discord" },
+    @{ Id = "Bitwarden.Bitwarden";          Name = "Bitwarden" },
+    @{ Id = "Obsidian.Obsidian";            Name = "Obsidian" },
+    @{ Id = "Spotify.Spotify";             Name = "Spotify" },
+    @{ Id = "tailscale.tailscale";          Name = "Tailscale" },
+    @{ Id = "Docker.DockerDesktop";         Name = "Docker Desktop" },
+    @{ Id = "ajeetdsouza.zoxide";           Name = "Zoxide" },
+    @{ Id = "JanDeDobbeleer.OhMyPosh";      Name = "Oh My Posh" },
+    @{ Id = "sharkdp.bat";                 Name = "Bat" },
+    @{ Id = "BurntSushi.ripgrep.MSVC";      Name = "Ripgrep" },
+    @{ Id = "Microsoft.PowerToys";          Name = "PowerToys" }
+)
+
+foreach ($app in $apps) {
+    Install-WingetApp -Id $app.Id -Name $app.Name
+}
+
+# ── Geist Mono Nerd Font ──────────────────────────────────────────────────────
+
+$fontName = "GeistMonoNerdFontMono-Regular.ttf"
+$fontPath = "$env:LOCALAPPDATA\Microsoft\Windows\Fonts\$fontName"
+if (-not (Test-Path $fontPath)) {
+    Write-Host "Installing Geist Mono Nerd Font..."
+    $url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Geist.zip"
+    $zip = "$env:TEMP\Geist.zip"
+    Invoke-WebRequest -Uri $url -OutFile $zip
+    Expand-Archive -Path $zip -DestinationPath "$env:TEMP\Geist" -Force
+    Get-ChildItem "$env:TEMP\Geist\*.ttf" | ForEach-Object {
+        Copy-Item $_.FullName "$env:LOCALAPPDATA\Microsoft\Windows\Fonts\"
+        $regPath = "HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts"
+        $fontDisplayName = $_.BaseName + " (TrueType)"
+        Set-ItemProperty -Path $regPath -Name $fontDisplayName -Value $_.Name
+    }
+    Remove-Item $zip, "$env:TEMP\Geist" -Recurse -Force
+}
+
+# ── mise ──────────────────────────────────────────────────────────────────────
+
+if (-not (Get-Command mise -ErrorAction SilentlyContinue)) {
+    Write-Host "Installing mise..."
+    winget install -e --id jdx.mise --accept-package-agreements --accept-source-agreements
+}
+
+if (Get-Command mise -ErrorAction SilentlyContinue) {
+    mise install
+}
+
+# ── WSL2 ─────────────────────────────────────────────────────────────────────
+
+if (-not (Get-Command wsl -ErrorAction SilentlyContinue)) {
+    Write-Host "Installing WSL2 with Ubuntu..."
+    wsl --install -d Ubuntu-24.04
+}
+
+# ── System Preferences ───────────────────────────────────────────────────────
+
+# Dark mode
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" `
+    -Name "AppsUseLightTheme" -Value 0 -Type DWord -Force
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" `
+    -Name "SystemUsesLightTheme" -Value 0 -Type DWord -Force
+
+# Show file extensions
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" `
+    -Name "HideFileExt" -Value 0 -Type DWord -Force
+
+# Show hidden files
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" `
+    -Name "Hidden" -Value 1 -Type DWord -Force
+
+# Enable developer mode
+$devRegPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock"
+if (Test-Path $devRegPath) {
+    Set-ItemProperty -Path $devRegPath -Name "AllowDevelopmentWithoutDevLicense" -Value 1 -Type DWord -Force
+}
+
+# Restart Explorer to apply changes
+Stop-Process -Name explorer -Force -ErrorAction SilentlyContinue
+
+Write-Host "Windows setup complete. You may need to restart for some changes to take effect."

@@ -1,11 +1,30 @@
 [tools]
+# Runtimes
+node = "lts"
+python = "latest"
+go = "latest"
+
+# Shell tools
 bat = "latest"
 eza = "latest"
 fd = "latest"
 fzf = "latest"
-github-cli = "latest"
-"github:BurntSushi/ripgrep" = "latest"
-just = "latest"
-neovim = "latest"
-oh-my-posh = "latest"
+zoxide = "latest"
+delta = "latest"
 sd = "latest"
+
+# Dev tools
+neovim = "latest"
+lazygit = "latest"
+just = "latest"
+jq = "latest"
+yq = "latest"
+github-cli = "latest"
+kubectl = "latest"
+"github:BurntSushi/ripgrep" = "latest"
+
+# Prompt
+oh-my-posh = "latest"
+
+# Package managers
+pnpm = "latest"

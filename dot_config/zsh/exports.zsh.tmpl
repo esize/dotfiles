@@ -1,0 +1,8 @@
+export EDITOR='nvim'
+export SUDO_EDITOR='nvim'
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export GREP_COLOR='3;33'
+
+{{ if eq .chezmoi.os "linux" }}
+export TERMINAL='ghostty'
+{{ end }}

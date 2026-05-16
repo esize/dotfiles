@@ -1,26 +1,33 @@
 [user]
-	email = evan@wool.homes
-	name = esize
-	signingkey = ~/.ssh/id_ed25519.pub
+	email = {{ .email }}
+	name = {{ .name }}
+	signingkey = {{ .signingkey }}
 [init]
 	defaultBranch = main
 [core]
 	editor = nvim
-  pager = delta
+	pager = delta
 
 [delta]
-  lineNumbers = true
+	lineNumbers = true
+	navigate = true
+	side-by-side = true
+
+[interactive]
+	diffFilter = delta --color-only
 
 [push]
-  autoSetupRemote = true
-  default = current
+	autoSetupRemote = true
+	default = current
 
 [alias]
-  undo = reset --soft HEAD^
+	undo = reset --soft HEAD^
+
 [gpg]
 	format = ssh
 [commit]
 	gpgsign = true
+
 [credential "https://github.com"]
 	helper = !gh auth git-credential
 [credential "https://gist.github.com"]

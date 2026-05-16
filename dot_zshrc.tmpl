@@ -1,0 +1,22 @@
+source ~/.config/zsh/aliases.zsh
+source ~/.config/zsh/bindkey.zsh
+source ~/.config/zsh/completion.zsh
+source ~/.config/zsh/exports.zsh
+source ~/.config/zsh/functions.zsh
+source ~/.config/zsh/history.zsh
+source ~/.config/zsh/path.zsh
+source ~/.config/zsh/plugins.zsh
+source ~/.config/zsh/setopt.zsh
+source ~/.config/zsh/theming.zsh
+
+# WSL-specific clipboard and key bindings
+if [ -n "$WSL_DISTRO_NAME" ]; then
+  source ~/.config/zsh/windows.zsh
+fi
+
+# mise runtime manager
+if command -v mise &>/dev/null; then
+  eval "$(mise activate zsh)"
+elif [ -f "$HOME/.local/bin/mise" ]; then
+  eval "$($HOME/.local/bin/mise activate zsh)"
+fi
