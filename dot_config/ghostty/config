@@ -1,7 +1,6 @@
 font-family = "GeistMono Nerd Font Mono"
 font-size = 13
-theme = catppuccin-macchiato
+theme = "Catppuccin Macchiato"
 cursor-style = block
 shell-integration = zsh
-window-decoration = false
 background-opacity = 0.95
