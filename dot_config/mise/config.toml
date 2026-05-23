@@ -5,6 +5,7 @@ node.gpg_verify = false
 # Runtimes
 node = "lts"
 python = "latest"
+uv = "latest"
 go = "latest"
 
 # Shell tools
