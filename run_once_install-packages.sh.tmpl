@@ -27,6 +27,13 @@ if [ -f "$BREWFILE" ]; then
   brew bundle --file="$BREWFILE"
 fi
 
+# Set zsh as default shell (macOS)
+if [ "$SHELL" != "/bin/zsh" ]; then
+  echo "Setting zsh as default shell..."
+  grep -qxF "/bin/zsh" /etc/shells || echo "/bin/zsh" | sudo tee -a /etc/shells
+  chsh -s /bin/zsh
+fi
+
 {{ else if eq .chezmoi.os "linux" }}
 # ── Linux (Ubuntu/Debian) ─────────────────────────────────────────────────────
 
@@ -34,7 +41,7 @@ sudo apt update && sudo apt upgrade -y
 
 sudo apt install -y \
   curl wget git build-essential software-properties-common \
-  unzip tmux ca-certificates gnupg lsb-release
+  unzip tmux ca-certificates gnupg lsb-release zsh
 
 # GitHub CLI
 if ! command -v gh &>/dev/null; then
@@ -43,6 +50,14 @@ if ! command -v gh &>/dev/null; then
   echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
     | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
   sudo apt update && sudo apt install -y gh
+fi
+
+# Set zsh as default shell (Linux)
+ZSH_PATH=$(command -v zsh || true)
+if [ -n "$ZSH_PATH" ] && [ "$SHELL" != "$ZSH_PATH" ]; then
+  echo "Setting zsh as default shell..."
+  grep -qxF "$ZSH_PATH" /etc/shells || echo "$ZSH_PATH" | sudo tee -a /etc/shells
+  sudo usermod --shell "$ZSH_PATH" "$USER"
 fi
 
 {{ end }}
