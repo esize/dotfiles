@@ -1,0 +1,6 @@
+Host forgejo.lab.wool.homes
+	User git
+	IdentityFile ~/.ssh/id_ed25519
+
+Host *
+	SetEnv TERM=xterm-256color
