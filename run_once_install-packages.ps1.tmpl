@@ -42,15 +42,19 @@ if (-not (Test-Path $fontPath)) {
     Write-Host "Installing Geist Mono Nerd Font..."
     $url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Geist.zip"
     $zip = "$env:TEMP\Geist.zip"
-    Invoke-WebRequest -Uri $url -OutFile $zip
-    Expand-Archive -Path $zip -DestinationPath "$env:TEMP\Geist" -Force
-    Get-ChildItem "$env:TEMP\Geist\*.ttf" | ForEach-Object {
-        Copy-Item $_.FullName "$env:LOCALAPPDATA\Microsoft\Windows\Fonts\"
-        $regPath = "HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts"
+    $extractDir = "$env:TEMP\Geist"
+    Invoke-WebRequest -Uri $url -OutFile $zip -UseBasicParsing
+    Expand-Archive -Path $zip -DestinationPath $extractDir -Force
+    $userFontsDir = "$env:LOCALAPPDATA\Microsoft\Windows\Fonts"
+    $regPath = "HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts"
+    Get-ChildItem "$extractDir\*.ttf" | ForEach-Object {
+        $dest = Join-Path $userFontsDir $_.Name
+        Copy-Item $_.FullName $dest -Force
+        # User-level font registry entries must store the full path (not filename-only)
         $fontDisplayName = $_.BaseName + " (TrueType)"
-        Set-ItemProperty -Path $regPath -Name $fontDisplayName -Value $_.Name
+        Set-ItemProperty -Path $regPath -Name $fontDisplayName -Value $dest
     }
-    Remove-Item $zip, "$env:TEMP\Geist" -Recurse -Force
+    Remove-Item $zip, $extractDir -Recurse -Force
 }
 
 # ── mise ──────────────────────────────────────────────────────────────────────
