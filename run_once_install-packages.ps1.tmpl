@@ -40,9 +40,9 @@ $fontName = "GeistMonoNerdFontMono-Regular.ttf"
 $fontPath = "$env:LOCALAPPDATA\Microsoft\Windows\Fonts\$fontName"
 if (-not (Test-Path $fontPath)) {
     Write-Host "Installing Geist Mono Nerd Font..."
-    $url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Geist.zip"
-    $zip = "$env:TEMP\Geist.zip"
-    $extractDir = "$env:TEMP\Geist"
+    $url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/GeistMono.zip"
+    $zip = "$env:TEMP\GeistMono.zip"
+    $extractDir = "$env:TEMP\GeistMono"
     Invoke-WebRequest -Uri $url -OutFile $zip -UseBasicParsing
     Expand-Archive -Path $zip -DestinationPath $extractDir -Force
     $userFontsDir = "$env:LOCALAPPDATA\Microsoft\Windows\Fonts"
