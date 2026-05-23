@@ -3,6 +3,11 @@
 dot_Brewfile
 {{ end }}
 
+# Linux-only files
+{{ if ne .chezmoi.os "linux" }}
+dot_config/systemd
+{{ end }}
+
 # Unix-only files (Mac + Linux)
 {{ if eq .chezmoi.os "windows" }}
 dot_zshrc

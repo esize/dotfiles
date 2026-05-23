@@ -1,0 +1,9 @@
+[Unit]
+Description=Run ssh-import-id every 24 hours
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=24h
+
+[Install]
+WantedBy=timers.target

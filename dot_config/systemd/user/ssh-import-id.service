@@ -1,0 +1,5 @@
+[Unit]
+Description=Import SSH keys
+
+[Service]
+ExecStart=%h/.local/share/mise/shims/ssh-import-id gh:esize
