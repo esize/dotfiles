@@ -15,6 +15,7 @@ fzf = "latest"
 zoxide = "latest"
 delta = "latest"
 sd = "latest"
+"pipx:ssh-import-id" = "latest"
 
 # Dev tools
 neovim = "latest"
@@ -31,3 +32,4 @@ oh-my-posh = "latest"
 
 # Package managers
 pnpm = "latest"
+rust = "latest"
