@@ -75,30 +75,6 @@ if (-not (Get-Command wsl -ErrorAction SilentlyContinue)) {
     wsl --install -d Ubuntu-24.04
 }
 
-# ── System Preferences ───────────────────────────────────────────────────────
-
-# Dark mode
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" `
-    -Name "AppsUseLightTheme" -Value 0 -Type DWord -Force
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" `
-    -Name "SystemUsesLightTheme" -Value 0 -Type DWord -Force
-
-# Show file extensions
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" `
-    -Name "HideFileExt" -Value 0 -Type DWord -Force
-
-# Show hidden files
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" `
-    -Name "Hidden" -Value 1 -Type DWord -Force
-
-# Enable developer mode
-$devRegPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock"
-if (Test-Path $devRegPath) {
-    Set-ItemProperty -Path $devRegPath -Name "AllowDevelopmentWithoutDevLicense" -Value 1 -Type DWord -Force
-}
-
-# Restart Explorer to apply changes
-Stop-Process -Name explorer -Force -ErrorAction SilentlyContinue
 
 Write-Host "Windows setup complete. You may need to restart for some changes to take effect."
 {{- end -}}
