@@ -14,13 +14,13 @@ dot_zshrc
 dot_config/zsh
 dot_config/ghostty
 dot_config/tmux
-run_once_install-packages.sh
-run_onchange_once_setup-ssh-import-id.sh
+install-packages.sh
+once_setup-ssh-import-id.sh
 {{ end }}
 
 # Windows-only files
 {{ if ne .chezmoi.os "windows" }}
 Documents
 AppData
-run_once_install-packages.ps1
+install-packages.ps1
 {{ end }}
