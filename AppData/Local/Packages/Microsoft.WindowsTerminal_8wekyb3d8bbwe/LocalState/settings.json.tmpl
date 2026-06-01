@@ -1,40 +1,125 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+    "defaultProfile": "{0f40f4c5-322d-4c1f-b4ca-49045080ba3f}",
+    "disableAnimations": true,
     "copyOnSelect": false,
     "copyFormatting": "none",
+    "disabledProfileSources": [
+        "ArcGIS",
+        "Windows.Terminal.Azure",
+        "Windows.Terminal.VisualStudio"
+    ],
+    "keybindings": [
+        {
+            "id": "Terminal.CopyToClipboard",
+            "keys": "ctrl+c"
+        },
+        {
+            "id": "Terminal.PasteFromClipboard",
+            "keys": "ctrl+v"
+        },
+        {
+            "id": "Terminal.FindText",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "id": "Terminal.DuplicatePaneAuto",
+            "keys": "alt+shift+d"
+        }
+    ],
+    "newTabMenu": [
+        {
+            "icon": null,
+            "profile": "{0f40f4c5-322d-4c1f-b4ca-49045080ba3f}",
+            "type": "profile"
+        },
+        {
+            "icon": null,
+            "profile": "{3e67bfa0-3e5b-47ac-93bc-a666db41d7d8}",
+            "type": "profile"
+        },
+        {
+            "type": "remainingProfiles"
+        }
+    ],
     "profiles": {
         "defaults": {
-            "font": {
-                "face": "GeistMono Nerd Font Mono",
-                "size": 12
-            },
             "colorScheme": "Catppuccin Macchiato",
-            "opacity": 95,
-            "useAcrylic": false,
-            "cursorShape": "filledBox"
+            "font": {
+                "face": "GeistMono Nerd Font",
+                "features": {
+                    "liga": 1
+                }
+            },
+            "intenseTextStyle": "all",
+            "opacity": 80,
+            "useAcrylic": true
         },
-        "list": []
+        "list": [
+            {
+                "altGrAliasing": true,
+                "antialiasingMode": "grayscale",
+                "closeOnExit": "automatic",
+                "colorScheme": "Catppuccin Macchiato",
+                "commandline": "pwsh.exe",
+                "cursorShape": "bar",
+                "font": {
+                    "face": "GeistMono Nerd Font",
+                    "features": {
+                        "liga": 1
+                    },
+                    "size": 12
+                },
+                "guid": "{0f40f4c5-322d-4c1f-b4ca-49045080ba3f}",
+                "hidden": false,
+                "historySize": 9001,
+                "icon": "C:\\Users\\evan\\Pictures\\PowerShell_Core_6.0_icon.png",
+                "name": "Powershell",
+                "opacity": 80,
+                "padding": "8, 8, 8, 8",
+                "snapOnInput": true,
+                "startingDirectory": "%USERPROFILE%",
+                "useAcrylic": true
+            },
+            {
+                "colorScheme": "Catppuccin Macchiato",
+                "commandline": "wsl.exe -d Ubuntu-26.04",
+                "font": {
+                    "face": "GeistMono Nerd Font",
+                    "features": {
+                        "liga": 1
+                    }
+                },
+                "guid": "{3e67bfa0-3e5b-47ac-93bc-a666db41d7d8}",
+                "hidden": false,
+                "icon": "C:\\Users\\evan\\Pictures\\ubuntu.png",
+                "intenseTextStyle": "all",
+                "name": "Ubuntu",
+                "opacity": 80,
+                "startingDirectory": "~",
+                "useAcrylic": true
+            }
+        ]
     },
     "schemes": [
         {
-            "name": "Catppuccin Macchiato",
             "background": "#24273A",
             "black": "#494D64",
             "blue": "#8AADF4",
             "brightBlack": "#5B6078",
             "brightBlue": "#8AADF4",
-            "brightCyan": "#91D7E3",
+            "brightCyan": "#8BD5CA",
             "brightGreen": "#A6DA95",
             "brightPurple": "#F5BDE6",
             "brightRed": "#ED8796",
-            "brightWhite": "#CAD3F5",
+            "brightWhite": "#A5ADCB",
             "brightYellow": "#EED49F",
             "cursorColor": "#F4DBD6",
-            "cyan": "#91D7E3",
+            "cyan": "#8BD5CA",
             "foreground": "#CAD3F5",
             "green": "#A6DA95",
+            "name": "Catppuccin Macchiato",
             "purple": "#F5BDE6",
             "red": "#ED8796",
             "selectionBackground": "#5B6078",
@@ -42,10 +127,27 @@
             "yellow": "#EED49F"
         }
     ],
-    "actions": [
-        { "command": { "action": "copy", "singleLine": false }, "keys": "ctrl+c" },
-        { "command": "paste", "keys": "ctrl+v" },
-        { "command": "find", "keys": "ctrl+shift+f" },
-        { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" }
-    ]
+    "themes": [
+        {
+            "name": "Catppuccin Macchiato",
+            "tab": {
+                "background": "#24273AFF",
+                "iconStyle": "default",
+                "showCloseButton": "always",
+                "unfocusedBackground": null
+            },
+            "tabRow": {
+                "background": "#1E2030FF",
+                "unfocusedBackground": "#181926FF"
+            },
+            "window": {
+                "applicationTheme": "dark",
+                "experimental.rainbowFrame": false,
+                "frame": null,
+                "unfocusedFrame": null,
+                "useMica": false
+            }
+        }
+    ],
+    "useAcrylicInTabRow": false
 }
